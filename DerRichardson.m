@@ -20,7 +20,7 @@ function [dfdx, d2fdx] = DerRichardson(f, x0, hin, N)
         dfdx(i,1) = h;
         d2fdx(i,1) = h;
         dfdx(i,2) = (f(x0+h) - f(x0-h))/(2*h); % diferencias centrales de dos puntos
-        d2fdx(i,2) = (f(x0+h) - 2*f(x0) + f(x0-h))/(h^2); % diferencias centrales de tres puntos
+        d2fdx(i,2) = (f(x0-h) - 2*f(x0) + f(x0+h))/(h^2); % diferencias centrales de tres puntos
     end
     
     % Calcular las extrapolaciones

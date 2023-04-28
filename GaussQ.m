@@ -6,11 +6,14 @@ function I = GaussQ(fun, a, b, n)
 %   - a y b son los limites de integración
 %   - n es el número de pesos/ puntos de Gauss a emplear en el cálculo
     syms x;
-    p = legendre(n, x);
+    % Polinomio de legendre de gradp n
+    p = legendreP(n, x);
     p = sym2poly(p);
-    nodos = roots(p);
+    % Raices del polinomio de Legendre
+    xn = roots(p);
+    yn = fun(xn);
     % Me falta calcular cada Li con la funcion de lagrange
-    M = LagINT(nodos);
+    M = LagINT(xn);
     % Calculamos los pesos de la cuadratura
     w = zeros(n,1);
     for i = 1:n

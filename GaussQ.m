@@ -11,16 +11,20 @@ function I = GaussQ(fun, a, b, n)
     p = sym2poly(p);
     % Raices del polinomio de Legendre
     xn = roots(p);
-    yn = fun(xn);
+    w = zeros(1, n);
     for i = 1:n
+        L = 1;
         for j = 1:n
             if i~=j
-                L(i) = L(i) * (x(i)-x(j))/(x(i)-x(j));
-                M(i,:) = L(i);
+                L = L * (x-xn(j))/(xn(i)-xn(j));
             end
         end
+        % w(i) = int(L * (b-a)/2, (b-a)/2*u + (a+b)/2, -1, 1);
+        w(i) = int(L, x, -1, 1);
     end
-
+    u = zeros(1, n);
+    b-a/2 + a+b/2
+    I = (b-a)/2 * sum(w.*fun((b-a)/2*u+(a+b)/2));
     % Me falta calcular cada Li con la funcion de lagrange
 %     M = LagINT(xn);
 %     % Calculamos los pesos de la cuadratura

@@ -7,7 +7,7 @@ function I = GaussQ(fun, a, b, n)
 %   - n es el número de pesos/ puntos de Gauss a emplear en el cálculo
     syms x;
     % Polinomio de legendre de gradp n
-    p = legendreP(n, x);
+    p = legendreP(n, x)
     p = sym2poly(p);
     % Raices del polinomio de Legendre
     xn = roots(p);
@@ -19,29 +19,11 @@ function I = GaussQ(fun, a, b, n)
                 L = L * (x-xn(j))/(xn(i)-xn(j));
             end
         end
-        % w(i) = int(L * (b-a)/2, (b-a)/2*u + (a+b)/2, -1, 1);
         w(i) = int(L, x, -1, 1);
     end
-    u = zeros(1, n);
-    b-a/2 + a+b/2
-    I = (b-a)/2 * sum(w.*fun((b-a)/2*u+(a+b)/2));
-    % Me falta calcular cada Li con la funcion de lagrange
-%     M = LagINT(xn);
-%     % Calculamos los pesos de la cuadratura
-%     w = zeros(n,1);
-%     for i = 1:n
-%         L = 0;
-%         for j = 1:n 
-%             L = L + M(i,j) * x^(j-1);
-%         end
-%         % Hago un cambio de variable para que a y b sean -1 1
-%         x = ((b-a)/2) * u + (a+b)/2;
-%         w(i) = int(L,u,1,-1);
-%     end
-%     
-%     % Calculamos la aproximación de la integral
-%     I = 0;
-%     for i = 1:n
-%         I = I + fun(nodes(i)) * w(i);
-%     end
+    
+    I = (b-a)/2 * sum(w'.*fun((b-a)/2*xn+(a+b)/2));
+%     u = zeros(1, n);
+%     b-a/2 + a+b/2
+%     I = (b-a)/2 * sum(w.*fun((b-a)/2*u+(a+b)/2));
 end

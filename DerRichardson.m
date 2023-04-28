@@ -1,6 +1,6 @@
 function [dfdx, d2fdx] = DerRichardson(f, x0, hin, N)
 % Función que calcula la derivada primera y segunda de una función anónima
-% con el método de Richardson
+% con el método de Richardson.
 % Entradas:
 %   f = función dada en forma anónima (f = @(x))
 %   x0 = punto donde se calcula la derivada

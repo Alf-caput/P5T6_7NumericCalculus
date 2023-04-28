@@ -7,7 +7,7 @@ function I = GaussQ(fun, a, b, n)
 %   - n es el número de pesos/ puntos de Gauss a emplear en el cálculo
     syms x;
     % Polinomio de legendre de gradp n
-    p = legendreP(n, x)
+    p = legendreP(n, x);
     p = sym2poly(p);
     % Raices del polinomio de Legendre
     xn = roots(p);
@@ -21,9 +21,5 @@ function I = GaussQ(fun, a, b, n)
         end
         w(i) = int(L, x, -1, 1);
     end
-    
     I = (b-a)/2 * sum(w'.*fun((b-a)/2*xn+(a+b)/2));
-%     u = zeros(1, n);
-%     b-a/2 + a+b/2
-%     I = (b-a)/2 * sum(w.*fun((b-a)/2*u+(a+b)/2));
 end

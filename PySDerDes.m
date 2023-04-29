@@ -8,10 +8,10 @@ function [yd, ydd] = PySDerDes(x, y)
 %   yd = vector fila con la primera derivada en los puntos
 %   ydd = vector fila con la segunda derivada en los puntos
 % Notas: 
-%   Por simplicidad se asume que el usuario no introduce x repetidas de 
-%   forma que a cada valor de x le corresponde un único valor de y.
-%   x es la variable independiente respecto de la que se deriva.
-
+% Por simplicidad se asume que el usuario no introduce x repetidas de forma
+% que a cada valor de x le corresponde un único valor de y.
+% La variable independiente respecto de la que se deriva es x.
+    
     % Se comprueba que la nube de puntos introducida es válida
     n = numel(x);
     if n ~= numel(y)
@@ -22,7 +22,7 @@ function [yd, ydd] = PySDerDes(x, y)
         disp("Error: Debe introducir al menos 4 puntos")
         return
     end
-    
+
     % Expresión de la primera derivada para el polinomio de Lagrange de
     % grado 2 para 3 puntos evaluada en xval
     d_lagrange = @(x, y, xval) ...

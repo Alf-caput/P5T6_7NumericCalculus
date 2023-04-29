@@ -25,22 +25,22 @@ function [yd, ydd] = PySDerDes(x, y)
 
     % Expresión de la primera derivada para el polinomio de Lagrange de
     % grado 2 para 3 puntos evaluada en xval
-    d_lagrange = @(x, y, xval) ...
+    d1_lagrange = @(x, y, xval) ...
         (2*xval-x(2)-x(3)) / ((x(1)-x(2))*(x(1)-x(3))) * y(1) + ...
         (2*xval-x(1)-x(3)) / ((x(2)-x(1))*(x(2)-x(3))) * y(2) + ...
         (2*xval-x(1)-x(2)) / ((x(3)-x(1))*(x(3)-x(2))) * y(3);
 
     % Se calcula la primera derivada en cada punto
     yd = zeros(1, n);
-    yd(1) = d_lagrange(x(1:3), y(1:3), x(1));
+    yd(1) = d1_lagrange(x(1:3), y(1:3), x(1));
     for i = 1: n-2
-        yd(i+1) = d_lagrange(x(i:i+2), y(i:i+2), x(i+1));
+        yd(i+1) = d1_lagrange(x(i:i+2), y(i:i+2), x(i+1));
     end
-    yd(i+2) = d_lagrange(x(i:i+2), y(i:i+2), x(i+2));
+    yd(i+2) = d1_lagrange(x(i:i+2), y(i:i+2), x(i+2));
 
     % Expresión de la segunda derivada para el polinomio de Lagrange de
     % grado 3 para 4 puntos evaluada en xval
-    dd_lagrange = @(x, y, xval) ...
+    d2_lagrange = @(x, y, xval) ...
         (6*xval-2*x(2)-2*x(3)-2*x(4)) / ((x(1)-x(2))*(x(1)-x(3))*(x(1)-x(4))) * y(1) + ...
         (6*xval-2*x(1)-2*x(3)-2*x(4)) / ((x(2)-x(1))*(x(2)-x(3))*(x(2)-x(4))) * y(2) + ...
         (6*xval-2*x(1)-2*x(2)-2*x(4)) / ((x(3)-x(1))*(x(3)-x(2))*(x(3)-x(4))) * y(3) + ...
@@ -48,10 +48,10 @@ function [yd, ydd] = PySDerDes(x, y)
 
     % Se calcula la segunda derivada en cada punto
     ydd = zeros(1, n);
-    ydd(1) = dd_lagrange(x(1:4), y(1:4), x(1));
+    ydd(1) = d2_lagrange(x(1:4), y(1:4), x(1));
     for i = 2: n-2
-        ydd(i) = d_lagrange(x(i-1:i+2), y(i-1:i+2), x(i));
+        ydd(i) = d2_lagrange(x(i-1:i+2), y(i-1:i+2), x(i));
     end
-    ydd(i+1) = dd_lagrange(x(i-1:i+2), y(i-1:i+2), x(i+1));
-    ydd(i+2) = dd_lagrange(x(i-1:i+2), y(n-3:i+2), x(i+2));
+    ydd(i+1) = d2_lagrange(x(i-1:i+2), y(i-1:i+2), x(i+1));
+    ydd(i+2) = d2_lagrange(x(i-1:i+2), y(n-3:i+2), x(i+2));
 end

@@ -8,9 +8,9 @@ function [dfdx, d2fdx] = DerRichardson(f, x0, hin, N)
 %   hin = tamaño de paso inicial
 %   N = orden de extrapolación
 % Salidas:
-%   dfdx = matriz de extrapolación para la 1ª derivada
-%   d2fdx = matriz de extrapolación para la 2ª derivada
-
+%   dfdx = matriz de extrapolación para la 1ª derivada (tamaño NxN+1)
+%   d2fdx = matriz de extrapolación para la 2ª derivada (tamaño NxN+1)
+% Nota: La primera columna de las matrices de extrapolación será el paso
     % Se inicializan las matrices de extrapolación con ceros
     dfdx = zeros(N, N+1);
     d2fdx = zeros(N, N+1);

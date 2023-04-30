@@ -5,6 +5,8 @@ function I = GaussQ(fun, a, b, n)
 %   - fun es la función a integrar dada en forma anónima
 %   - a y b son los limites de integración
 %   - n es el número de pesos/ puntos de Gauss a emplear en el cálculo
+% OUTPUT:
+%   - I es el valor aproximado de la integral calculada
     syms x;
     % Polinomio de legendre de gradp n
     p = legendreP(n, x);

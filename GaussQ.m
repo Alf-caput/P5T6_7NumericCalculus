@@ -3,7 +3,8 @@ function I = GaussQ(fun, a, b, n)
 % cuadratura de Gauss.
 % INPUTS:
 %    fun es la función a integrar dada en forma anónima
-%    a y b son los limites de integración
+%    a y b son los limites de integración (a limite inferior, b limite
+%    superior)
 %    n es el número de pesos/ puntos de Gauss a emplear en el cálculo
 % OUTPUT:
 %    I es el valor aproximado de la integral calculada

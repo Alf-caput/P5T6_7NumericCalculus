@@ -8,8 +8,11 @@ function I = Trapeciosn(Fun, a, b, n)
 % Output: 
 %   I = Valor de la integral
     h = (b-a)/n;  % Ancho del intervalo
-    xi = a+h;
+    xi = a+h; % x(2)
     sum_f = 0;
+    % Se calcula el sumatorio de f(x(i)) con x(i) = x(2), ..., x(n)
+    % Nota: Los extremos x1 = a; x(n+1) = b no corresponden a este
+    % sumatorio, por eso i = 2:n
     for i=2:n
        sum_f = sum_f + Fun(xi);
        xi = xi + h;

@@ -1,4 +1,4 @@
-function [dfdy, dfdx] = PrmDerPar(x, y, f)
+function [dfdx, dfdy] = PrmDerPar(x, y, f)
 % Evalúa las primeras derivadas parciales df/dx y df/dy de una función f(x,y)
 % dada por puntos tabulados discretos con igual espaciado
 % INPUTS:

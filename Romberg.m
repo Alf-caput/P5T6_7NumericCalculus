@@ -1,6 +1,6 @@
 function IR = Romberg(f, a, b, Ni, Niveles)
 % Función que calcula la integral de una función dada en forma analítica.
-% El algoritmo utilizado es el Método de Romberg, junto al método compuesto
+% El algoritmo utilizado es el método de Romberg, junto al método compuesto
 % de los trapecios.
 % Input:
 %   f = función anónima de la forma f=@(x)

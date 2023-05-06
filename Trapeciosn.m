@@ -1,6 +1,6 @@
 function I = Trapeciosn(Fun, a, b, n)
 % Función que calcula la integral de una función dada en forma anónima.
-% El algoritmo utilizado es el Método compuesto de los trapecios.
+% El algoritmo utilizado es el método compuesto de los trapecios.
 % Input:
 %   Fun = función anónima de la forma Fun = @(x).
 %   a, b = límites de integración (a < b).

@@ -1,7 +1,6 @@
 function I = GaussQ(fun, a, b, n)
-% Función que calcula la integral de una función dada en forma anónima.
-% El algoritmo utilizado es el método de integración por cuadratura de
-% Gauss.
+% Función que calcula la integral de una función dada en forma anónima. El 
+% algoritmo utilizado es el método de integración por cuadratura de Gauss.
 % INPUTS:
 %    fun = función a integrar dada en forma anónima @(x)
 %    a, b = límites de integración(a limite inferior, b limite

@@ -1,6 +1,6 @@
 function I = Simpson38(y, a, b, Er)
 % Función que devuelve la integral de una función en un intervalo (a, b).
-% El algoritmo utilizado es el Método compuesto de Simpson 3/8.
+% El algoritmo utilizado es el método compuesto de Simpson 3/8.
 % INPUTS:
 %   y = función a integrar dada en forma vectorizada y = @(x)
 %   a, b = límites de integración

@@ -6,11 +6,11 @@ function [dfdy, dfdx] = PrmDerPar(x, y, f)
 %           independientes los cuales son valores equiespaciados y
 %           ordenados de menor a mayor
 %   f = matriz con el valor de f(x,y) en cada punto, correspondiendo 
-%       columnas a valores de x y filas a valores de y
+%       filas a valores de x y columnas a valores de y
 % OUTPUTS:
 %   dfdx, dfdy = matrices con los valores de las derivadas parciales en 
 %                cada punto de modo que la posición (i,j) de la matriz 
-%                sea la derivada en el punto (x(j), y(i))
+%                sea la derivada parcial en el punto (x(i), y(j))
 % Nota: Se tomará como espaciado la diferencia de los dos primeros valores 
 % de x y los dos primeros valores de y. Por simplicidad se asume que los
 % valores están equiespaciados y ordenados de menor a mayor, no realizando

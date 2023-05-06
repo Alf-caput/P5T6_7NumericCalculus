@@ -1,13 +1,15 @@
-function IR = Romberg(f,a,b,Ni,Niveles)
-% Función que calcula la integral de una función anónima dada en forma analítica mediante 
-% el método de Romberg. **** EMPLEA LA FUNCIÓN Trapeciosn(Fun,a,b,n) ****
+function IR = Romberg(f, a, b, Ni, Niveles)
+% Función que calcula la integral de una función dada en forma analítica.
+% El algoritmo utilizado es el Método de Romberg, junto al método compuesto
+% de los trapecios.
 % Input:
-%   f = función anónima de la forma f=@(x).
-%   a y b = límites de integración (a<b).
-%   Ni = número inicial de subintervalos.
-%   Niveles = número de niveles de integración. 
+%   f = función anónima de la forma f=@(x)
+%   a, b = límites de integración (a<b)
+%   Ni = número inicial de subintervalos
+%   Niveles = número de niveles de integración
 % Output:
 %   IR = matriz con los distintos valores estimados de la integral.
+% Nota: se emplea la función Trapeciosn(Fun,a,b,n).
 
     % Inicialización de la matriz IR.
     IR = zeros(Niveles);

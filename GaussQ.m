@@ -1,11 +1,12 @@
 function I = GaussQ(fun, a, b, n)
-% Función de Matlab que que calcula cualquier integral definida mediante la
-% cuadratura de Gauss.
+% Función que calcula la integral de una función dada en forma anónima.
+% El algoritmo utilizado es el Método de integración por cuadratura de
+% Gauss.
 % INPUTS:
-%    fun es la función a integrar dada en forma anónima
-%    a y b son los limites de integración (a limite inferior, b limite
-%    superior)
-%    n es el número de pesos/ puntos de Gauss a emplear en el cálculo
+%    fun = función a integrar dada en forma anónima @(x)
+%    a, b = límites de integración(a limite inferior, b limite
+%           superior)
+%    n = nº de puntos/pesos a emplear en el cálculo
 % OUTPUT:
 %    I es el valor aproximado de la integral calculada
     syms x;
@@ -14,7 +15,7 @@ function I = GaussQ(fun, a, b, n)
     p = sym2poly(p);
     % Raices del polinomio de Legendre
     xn = roots(p);
-    w = zeros(1, n);
+    w = zeros(n, 1);
     for i = 1:n
         L = 1;
         for j = 1:n
@@ -24,5 +25,5 @@ function I = GaussQ(fun, a, b, n)
         end
         w(i) = int(L, x, -1, 1);
     end
-    I = (b-a)/2 * sum(w'.*fun((b-a)/2*xn+(a+b)/2));
+    I = (b-a)/2 * sum(w.*fun((b-a)/2*xn+(a+b)/2));
 end

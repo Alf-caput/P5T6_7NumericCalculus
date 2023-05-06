@@ -27,8 +27,8 @@ function [dfdx, dfdy] = PrmDerPar(x, y, f)
     end
     % Puntos extremos:
     % Cálculo de las derivadas parciales con la fórmula de diferencia de tres puntos hacia delante 
-    dfdx(1,:) = (-3*f(1,:) + 4*f(2,:) - f(3,:)) / (x(2) - x(1));
-    dfdy(:,1) = (-3*f(:,1) + 4*f(:,2) - f(:,3)) / (y(2) - y(1));
+    dfdx(1,:) = (-3*f(1,:) + 4*f(2,:) - f(3,:)) / (2*(x(2) - x(1)));
+    dfdy(:,1) = (-3*f(:,1) + 4*f(:,2) - f(:,3)) / (2*(y(2) - y(1)));
     % Cálculo de las derivadas parciales con la formula de diferencia de tres puntos hacia atrás
     dfdx(m,:) = (f(m-2,:) - 4*f(m-1,:) + 3*f(m,:)) / (2*(x(m) - x(m-1)));    
     dfdy(:,n) = (f(:,n-2) - 4*f(:,n-1) + 3*f(:,n)) / (2*(y(n) - y(n-1)));

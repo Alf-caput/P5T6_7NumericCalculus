@@ -1,6 +1,7 @@
 function [dfdx, dfdy] = PrmDerPar(x, y, f)
-% Evalúa las primeras derivadas parciales df/dx y df/dy de una función f(x,y)
-% dada por puntos tabulados discretos con igual espaciado
+% Función que calcula las primeras derivadas parciales para un conjunto de 
+% puntos tabulados discretos con igual espaciado. El algoritmo utilizado es
+% el método de aproximación de la derivada por diferencias finitas.
 % INPUTS:
 %   x, y =  vectores fila (o columna) con los valores de las variables 
 %           independientes los cuales son valores equiespaciados y

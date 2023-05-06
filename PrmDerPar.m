@@ -23,7 +23,6 @@ function [dfdx, dfdy] = PrmDerPar(x, y, f)
     hx = x(2) - x(1);
     hy = y(2) - y(1);
     
-    
     % Se inicializan las matrices dfdx y dfdy con ceros
     dfdx = zeros(nx, ny);
     dfdy = zeros(nx, ny);

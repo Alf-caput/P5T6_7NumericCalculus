@@ -1,4 +1,16 @@
 function [dfdx, dfdy] = PrmDerPar(x, y, f)
+% función que evalúa las primeras derivadas parciales df/dx, df/dy de una
+% función f(x,y) dada por puntos tabulados discretos con igual espaciado.
+% Se utiliza las fórmulas de diferencia central de dos puntos en los puntos 
+% interiores y fórmulas de diferencia de tres puntos hacia delante y hacia 
+% atrás en los puntos extremos.
+% INPUTS:
+%   x, y =  vectores con los valores de las variables independientes
+%   f = matriz con el valor de f(x,y) en cada punto.
+% OUTPUTS:
+%   dfdx, dfdy = matrices con los valores de las derivadas parciales 
+%   en cada punto de modo que la posición (i,j) de la matriz de resultados 
+%   sea la derivada en el punto que corresponde a x(i), y(j)
 % Obteniendo las dimensiones de la matriz f
     [m, n] = size(f);
     
@@ -9,8 +21,8 @@ function [dfdx, dfdy] = PrmDerPar(x, y, f)
     % Calculando las derivadas parciales con la fórmula de diferencia central de dos puntos en los puntos interiores
     for i = 2:m-1
         for j = 2:n-1
-            dfdx(i, j) = (f(i+1, j) - f(i-1, j)) / (x(i+1) - x(i-1))
-            dfdy(i, j) = (f(i, j+1) - f(i, j-1)) / (y(j+1) - y(j-1))
+            dfdx(i, j) = (f(i+1, j) - f(i-1, j)) / (x(i+1) - x(i-1));
+            dfdy(i, j) = (f(i, j+1) - f(i, j-1)) / (y(j+1) - y(j-1));
         end
     end
     

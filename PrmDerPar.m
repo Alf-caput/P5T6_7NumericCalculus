@@ -21,8 +21,8 @@ function [dfdx, dfdy] = PrmDerPar(x, y, f)
     % Cálculo de las derivadas parciales con la fórmula de diferencia central de dos puntos en los puntos interiores
     for i = 2:m-1
         for j = 2:n-1
-            dfdx(i, j) = (f(i+1, j) - f(i-1, j)) / (x(i+1) - x(i-1));
-            dfdy(i, j) = (f(i, j+1) - f(i, j-1)) / (y(j+1) - y(j-1));
+            dfdx(i, j) = (f(i+1, j) - f(i-1, j)) / (2*(x(i+1) - x(i-1)));
+            dfdy(i, j) = (f(i, j+1) - f(i, j-1)) / (2*(y(j+1) - y(j-1)));
         end
     end
     % Puntos extremos:

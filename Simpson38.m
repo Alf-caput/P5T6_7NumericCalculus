@@ -21,8 +21,8 @@ function I = Simpson38(y, a, b, Er)
     h = (b-a)/N; % Longitud de cada subintervalo
     I0 = 3/8*h * (ya + 3*(y(a+h) + y(a+2*h)) + yb);
 
-    % En la segunda iteración se divide en 6 subintervalos
-    N = 6;
+    % En la segunda iteración se duplica el número de subintervalos (N = 6)
+    N = 2*N;
     h = (b-a)/N;
 
     % sum1 = y(x2) + y(x3) + y(x5) + y(x6)

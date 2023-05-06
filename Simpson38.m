@@ -1,40 +1,71 @@
 function I = Simpson38(y, a, b, Er)
-% función que utiliza el método compuesto de Simpson 3/8 para la integración de una función f(x) que está dada en forma anónima f = @(x).
+% Función que devuelve la integral de una función en un intervalo (a, b).
+% El algoritmo utilizado es el Método compuesto de Simpson 3/8.
 % INPUTS:
-%   y es la función a integrar dada en forma vectorizada y = @(x)
-%   a b son los límites de integración
-%   Er es el error permitido. Las iteraciones se detienen cuando el error relativo entre dos iteraciones sucesivas es menor que Er
+%   y = función a integrar dada en forma vectorizada y = @(x)
+%   a, b = límites de integración
+%   Er = error permitido
 % OUTPUT:
-%   I es el valor de la integral
-
-    % El método de 3/8 de Simpson puede utilizarse si se cumplen las dos condiciones siguientes:
-        % - Los subintervalos están igualmente espaciados.
-        % - El número de subintervalos dentro de [a,b] es divisible por 3
-    % En la primera iteración el intervalo [a, b] se divide en tres subintervalos
-    x = [a, (a+b)/3, 2*(a+b)/3, b];
+%   I = valor de la integral
+% El error se calculará como el valor absoluto de la diferencia relativa 
+% entre iteraciones.
+% Nota: para calcular el error relativo entre iteraciones se necesitan dos
+% iteraciones, por tanto la integral devuelta es al menos la de la segunda
+% iteración, esto es, dividir el intervalo en 6 subintervalos.
+    
     % Inicialización de variables
-    sum1 = 0;
-    sum2 = 0;
-    er_rel = 1;
-    y_a = y(a);
-    y_b = y(b);
-    I0 = 0;
-    while er_rel > Er % El error relativo se calcula como la diferencia de los valores calculados entre 2 iteraciones.
-        n = length(x);
-        h = (b - a)/n;
-        for i = 2:3:n-1
-            sum1 = y(x(i)) + y(x(i+1)) + sum1;
-        end
-        for j = 4:3:n-2
-            sum2 = y(x(j)) + sum2;
-        end
-        I = 3*h/8 * (y_a + 3*sum1 +2*sum2 + y_b);
-        sum1 = 0;
-        sum2 = 0;
-        er_rel = I - I0;
+    ya = y(a); yb = y(b);
+
+    % En la primera iteración se divide en 3 subintervalos
+    N = 3; % Número de subintervalos
+    h = (b-a)/N; % Longitud de cada subintervalo
+    I0 = 3/8*h * (ya + 3*(y(a+h) + y(a+2*h)) + yb);
+
+    % En la segunda iteración se divide en 6 subintervalos
+    N = 6;
+    h = (b-a)/N;
+
+    % sum1 = y(x2) + y(x3) + y(x5) + y(x6)
+    sum1 = y(a+h) + y(a+2*h) + y(a+4*h) + y(a+5*h);
+    % sum2 = y(x4)
+    sum2 = y(a+3*h);
+
+    % Finalmente se obtiene el valor de la integral
+    I = 3*h/8*(ya+3*sum1+2*sum2+yb);
+
+    % De manera general (cuando N es al menos 6 y divisible por 3)
+    % sum1 y sum2 se pueden expresar como series
+    % sum1 = Serie(y(xi) + y(xi+1))         (i = 2, 5, 8, ... N-1)
+    % sum2 = Serie(y(xj))                   (j = 4, 7, 10, ... N-2)
+
+    % Se ejecuta el algoritmo hasta que el error relativo entre iteraciones
+    % es menor que el Error permitido
+    while abs((I - I0) / I0) >= Er
         I0 = I;
-        % En cada iteración el número de intervalos se duplica
-        x = [x diff(x)/2+x(1:end-1)];
-        x = sort(x);
+
+        % Se duplica el número de subintervalos
+        N = 2*N;
+        h = (b-a)/N;
+
+        % Se realiza el primer sumatorio
+        % sum1 = Serie(y(xi) + y(xi+1))     (i = 2, 5, 8, ... N-1)
+        xi = a+h; % x2
+        sum1 = 0;
+        for i = 2:3:N-1
+            sum1 = sum1 + y(xi) + y(xi+h);
+            xi = xi + 3*h;
+        end
+
+        % Se realiza el segundo sumatorio
+        % sum2 = Serie(y(xj))               (j = 4, 7, 10, ... N-2)
+        xj = a+3*h; % x4
+        sum2 = 0;
+        for j = 4:3:N-2
+            sum2 = sum2 + y(xj);
+            xj = xj + 3*h;
+        end
+
+        % Se obtiene el valor de la integral
+        I = 3*h/8*(ya+3*sum1+2*sum2+yb);
     end
 end

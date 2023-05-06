@@ -42,8 +42,8 @@ function [dfdy, dfdx] = PrmDerPar(x, y, f)
     end
 
     % Se calcula df/dx usando diferencia central de dos puntos en puntos interiores
-    for i = 2:ny-1
-        for j = 1:nx
+    for j = 2:ny-1
+        for i = 1:nx
             dfdy(i,j) = (f(i,j+1) - f(i,j-1)) / (2*hx);
         end
     end
